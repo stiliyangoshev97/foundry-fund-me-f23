@@ -1,66 +1,72 @@
-## Foundry
+# FundMe
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A simple Ethereum smart contract project that allows users to fund the contract, and only the owner can withdraw the funds.
 
-Foundry consists of:
+---
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Overview
 
-## Documentation
+This project demonstrates a basic crowdfunding smart contract built with Solidity and tested using Foundry.  
+Users can send ETH to the contract as a contribution, and the contract owner can withdraw the collected funds.
 
-https://book.getfoundry.sh/
+---
 
-## Usage
+## Features
 
-### Build
+- Users can fund the contract with ETH.
+- Contract owner can withdraw the total balance.
+- Keeps track of the amount funded by each address.
+- Uses Chainlink Price Feeds to convert ETH value for additional functionality (optional).
+- Written and tested with Foundry.
 
-```shell
-$ forge build
-```
+---
 
-### Test
+## Contracts
 
-```shell
-$ forge test
-```
+- `FundMe.sol` — Main contract where users fund ETH and owner withdraws.
+- `PriceConverter.sol` — Utility library to get ETH price from Chainlink oracles.
+- `MockV3Aggregator.sol` — Mock contract for local testing Chainlink price feeds.
 
-### Format
+---
 
-```shell
-$ forge fmt
-```
+## Requirements
 
-### Gas Snapshots
+- [Foundry](https://github.com/foundry-rs/foundry) — Solidity development toolkit
+- Solidity 0.8.x
 
-```shell
-$ forge snapshot
-```
+---
 
-### Anvil
+## How to use
 
-```shell
-$ anvil
-```
+1. **Clone the repo**
 
-### Deploy
+   ```bash
+   git clone <repo-url>
+   cd FundMe
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+2. **Install Foundry**
+Follow instructions at https://github.com/foundry-rs/foundry#installation
 
-### Cast
+3. **Run tests**
+forge test
 
-```shell
-$ cast <subcommand>
-```
+4. **Format code**
+forge fmt
 
-### Help
+5. **Deploy**
+Use Foundry scripting or your preferred deployment method.
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+How it works
+Users call the fund() function and send ETH.
+The contract stores the amount funded per address.
+Only the owner (deployer) can call withdraw() to transfer funds out.
+After withdrawal, funders’ records reset.
+
+Contributing
+Feel free to open issues or submit pull requests to improve the contract or tests.
+
+License
+MIT License
+
+Contact
+If you have questions or suggestions, please open an issue or reach out!
