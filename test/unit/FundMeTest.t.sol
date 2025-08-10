@@ -29,21 +29,13 @@ contract FundMeTest is Test {
     function testOwnerIsMsgSender() public {
         // 👇 In Foundry tests, msg.sender is address(this), same as who deployed in setUp()
         address expectedOwner = msg.sender;
-        assertEq(
-            fundMe.getOwner(),
-            expectedOwner,
-            "Owner should be the message sender"
-        );
+        assertEq(fundMe.getOwner(), expectedOwner, "Owner should be the message sender");
     }
 
     function testPriceFeedVersion() public {
         uint256 version = fundMe.getVersion();
         console.log("Price Feed Version:", version);
-        assertEq(
-            version,
-            4,
-            "Price Feed Version should be 4 (Sepolia ETH/USD)"
-        );
+        assertEq(version, 4, "Price Feed Version should be 4 (Sepolia ETH/USD)");
     }
 
     function testFundFailsWithoutEnoughEth() public {
@@ -104,11 +96,7 @@ contract FundMeTest is Test {
         uint256 endingOwnerBalance = fundMe.getOwner().balance; // Get the owner's balance after withdrawal
         uint256 endingFundMeBalance = address(fundMe).balance; // Get the FundMe contract's balance after withdrawal
 
-        assertEq(
-            endingFundMeBalance,
-            0,
-            "FundMe balance should be 0 after withdrawal"
-        );
+        assertEq(endingFundMeBalance, 0, "FundMe balance should be 0 after withdrawal");
         assertEq(
             startingFundMeBalance + startingOwnerBalance,
             endingOwnerBalance,
@@ -150,11 +138,7 @@ contract FundMeTest is Test {
         uint256 endingOwnerBalance = fundMe.getOwner().balance; // Get the owner's balance after withdrawal
         uint256 endingFundMeBalance = address(fundMe).balance; // Get the FundMe contract's balance after withdrawal
 
-        assertEq(
-            endingFundMeBalance,
-            0,
-            "FundMe balance should be 0 after withdrawal"
-        );
+        assertEq(endingFundMeBalance, 0, "FundMe balance should be 0 after withdrawal");
 
         assertEq(
             startingFundMeBalance + startingOwnerBalance,
@@ -197,11 +181,7 @@ contract FundMeTest is Test {
         uint256 endingOwnerBalance = fundMe.getOwner().balance; // Get the owner's balance after withdrawal
         uint256 endingFundMeBalance = address(fundMe).balance; // Get the FundMe contract's balance after withdrawal
 
-        assertEq(
-            endingFundMeBalance,
-            0,
-            "FundMe balance should be 0 after withdrawal"
-        );
+        assertEq(endingFundMeBalance, 0, "FundMe balance should be 0 after withdrawal");
 
         assertEq(
             startingFundMeBalance + startingOwnerBalance,

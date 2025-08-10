@@ -50,13 +50,9 @@ contract FundMe {
         s_funders = new address[](0); // Reset the array to save gas
 
         // Transfer the balance to the owner
-        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed"); // Ensure the transfer was successful
-        // To save more gas we could use error FundMe__CallFailed() instead of require
-
-
-
-
+            // To save more gas we could use error FundMe__CallFailed() instead of require
     }
 
     function withdraw() public onlyOwner {
@@ -97,9 +93,7 @@ contract FundMe {
     }
 
     // View / Pure functions (Getters)
-    function getAddressToAmountFunded(
-        address fundingAddress
-    ) external view returns (uint256) {
+    function getAddressToAmountFunded(address fundingAddress) external view returns (uint256) {
         return s_addressToAmountFunded[fundingAddress];
     }
 
@@ -110,8 +104,6 @@ contract FundMe {
     function getOwner() external view returns (address) {
         return i_owner;
     }
-
-
 }
 
 // Concepts we didn't cover yet (will cover in later sections)
